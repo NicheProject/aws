@@ -263,6 +263,7 @@ def mount_device(raid_dev, mount_point, mount_point_owner, mount_point_group, mo
     owner mount_point_owner
     group mount_point_group
     mode mount_point_mode
+    recursive true
     action    :create
     not_if "test -d #{mount_point}"
   end
