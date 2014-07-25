@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: aws
+# Cookbook Name:: niche-aws
 # Recipe:: default
 #
 # Copyright 2008-2009, Opscode, Inc.
