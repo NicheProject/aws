@@ -1,4 +1,4 @@
-include Opscode::Aws::Ec2
+include Niche::Aws::Ec2
 
 # Support whyrun
 def whyrun_supported?

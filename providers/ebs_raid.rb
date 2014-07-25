@@ -1,4 +1,4 @@
-include Opscode::Aws::Ec2
+include Niche::Aws::Ec2
 
 action :auto_attach do
 

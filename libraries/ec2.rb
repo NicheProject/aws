@@ -19,7 +19,7 @@
 
 require 'open-uri'
 
-module Opscode
+module Niche
   module Aws
     module Ec2
       def find_snapshot_id(volume_id="", find_most_recent=false)

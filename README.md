@@ -146,10 +146,10 @@ during the Compile Phase of the Chef run.
 Libraries
 =========
 
-The cookbook has a library module, `Opscode::AWS::Ec2`, which can be
+The cookbook has a library module, `Niche::Aws::Ec2`, which can be
 included where necessary:
 
-    include Opscode::Aws::Ec2
+    include Niche::Aws::Ec2
 
 This is needed in any providers in the cookbook. Along with some
 helper methods used in the providers, it sets up a class variable,
@@ -176,7 +176,7 @@ Actions:
 Attribute Parameters:
 
 * `aws_secret_access_key`, `aws_access_key` - passed to
-  `Opscode::AWS:Ec2` to authenticate required, unless using IAM roles for authentication.
+  `Niche::Aws:Ec2` to authenticate required, unless using IAM roles for authentication.
 * `size` - size of the volume in gigabytes.
 * `snapshot_id` - snapshot to build EBS volume from.
 * most_recent_snapshot - use the most recent snapshot when creating a
@@ -206,7 +206,7 @@ Actions:
 Attribute Parameters:
 
 * `aws_secret_access_key`, `aws_access_key` - passed to
-  `Opscode::AWS:Ec2` to authenticate, required.
+  `Niche::Aws:Ec2` to authenticate, required.
 * `mount_point` - where to mount the RAID volume
 * `mount_point_owner` - the owner of the mount point (default root)
 * `mount_point_group` - the group of the mount point (default root)
@@ -234,7 +234,7 @@ Actions:
 Attribute Parameters:
 
 * `aws_secret_access_key`, `aws_access_key` - passed to
-  `Opscode::AWS:Ec2` to authenticate, required, unless using IAM roles for authentication.
+  `Niche::Aws:Ec2` to authenticate, required, unless using IAM roles for authentication.
 * `ip` - the IP address.
 * `timeout` - connection timeout for EC2 API.
 
@@ -248,7 +248,7 @@ Actions:
 Attribute Parameters:
 
 * `aws_secret_access_key`, `aws_access_key` - passed to
-  `Opscode::AWS:Ec2` to authenticate, required, unless using IAM roles for authentication.
+  `Niche::Aws:Ec2` to authenticate, required, unless using IAM roles for authentication.
 * `name` - the name of the LB, required.
 
 ## resource_tag.rb
@@ -266,7 +266,7 @@ Actions:
 Attribute Parameters
 
 * `aws_secret_access_key`, `aws_access_key` - passed to
-  `Opscode::AWS:Ec2` to authenticate, required, unless using IAM roles for authentication.
+  `Niche::Aws:Ec2` to authenticate, required, unless using IAM roles for authentication.
 * `tags` - a hash of key value pairs to be used as resource tags,
   (e.g. `{ "Name" => "foo", "Environment" => node.chef_environment
   }`,) required.
