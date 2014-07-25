@@ -285,7 +285,9 @@ def mount_device(raid_dev, mount_point, mount_point_owner, mount_point_group, mo
       Chef::Log.info("Found #{md_device}")
 
       # Force rebuilding file system if needed
-      format_device(md_device, filesystem) unless `blkid #{mountpoint}`.split.last.match(filesystem)
+      existing_filesystem = `blkid #{mountpoint}`.split.last
+      Chef::Log.info("Existing filesystem output: #{existing_filesystem}")
+      format_device(md_device, filesystem) unless existing_filesystem && existing_filesystem.match(filesystem)
 
       # the mountpoint must be determined dynamically, so I can't use the chef mount
       system("mount -t #{filesystem} -o #{filesystem_options} #{md_device} #{mount_point}")
