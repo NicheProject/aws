@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: niche-aws
+# Cookbook Name:: niche_aws
 # Recipe:: default
 #
 # Copyright 2008-2009, Opscode, Inc.
