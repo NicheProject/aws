@@ -302,14 +302,14 @@ def attach_volume(disk_dev, volume_id)
   Chef::Log.info("Attaching existing ebs volume id #{volume_id} for device #{disk_dev_path}")
 
   creds = aws_creds() # cannot be invoked inside the block
-  aws_ebs_volume disk_dev_path do
+  niche_aws_ebs_volume disk_dev_path do
     aws_access_key          creds['aws_access_key_id']
     aws_secret_access_key   creds['aws_secret_access_key']
     device                  disk_dev_path
     name                    disk_dev
     volume_id               volume_id
     action                  [:attach]
-    provider                "aws_ebs_volume"
+    provider                "niche_aws_ebs_volume"
   end
 end
 
@@ -342,7 +342,7 @@ def create_raid_disks(mount_point, mount_point_owner, mount_point_group, mount_p
 
     Chef::Log.info "Snapshot array is #{snapshots[i-1]}"
     creds = aws_creds() # cannot be invoked inside the block
-    aws_ebs_volume disk_dev_path do
+    niche_aws_ebs_volume disk_dev_path do
       aws_access_key          creds['aws_access_key_id']
       aws_secret_access_key   creds['aws_secret_access_key']
       size                    disk_size
@@ -352,7 +352,7 @@ def create_raid_disks(mount_point, mount_point_owner, mount_point_group, mount_p
       name                    disk_dev_path
       action                  [:create, :attach]
       snapshot_id             creating_from_snapshot ? snapshots[i-1] : ""
-      provider                "aws_ebs_volume"
+      provider                "niche_aws_ebs_volume"
 
       # set up our data bag info
       devices[disk_dev_path] = "pending"

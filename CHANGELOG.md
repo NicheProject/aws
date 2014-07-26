@@ -26,14 +26,14 @@ v2.1.1 (2014-03-18)
 v2.1.0 (2014-02-25)
 -------------------
 ### Improvement
-- **[COOK-4008](https://tickets.opscode.com/browse/COOK-4008)** - Add name property for aws_elastic_ip LWRP
+- **[COOK-4008](https://tickets.opscode.com/browse/COOK-4008)** - Add name property for niche_aws_elastic_ip LWRP
 
 
 v2.0.0 (2014-02-19)
 -------------------
 [COOK-2755] Add allocate action to the elastic ip resource
 [COOK-2829] Expose AWS credentials for ebs_raid LWRP as parameters
-[COOK-2935] 
+[COOK-2935]
 [COOK-4213] Use use_inline_resources
 [COOK-3467] Support IAM role
 [COOK-4344] Add support for mounting existing raids and reusing volume
@@ -55,7 +55,7 @@ v0.101.6
 v0.101.4
 --------
 ### Improvement
-- **[COOK-3345](https://tickets.opscode.com/browse/COOK-3345)** - Add `aws_s3_file` LWRP
+- **[COOK-3345](https://tickets.opscode.com/browse/COOK-3345)** - Add `niche_aws_s3_file` LWRP
 - **[COOK-3264](https://tickets.opscode.com/browse/COOK-3264)** - Allow specifying of file ownership for `ebs_raid` resource `mount_point`
 
 ### Bug
@@ -92,12 +92,12 @@ v0.101.0
 
 v0.100.6
 --------
-- [COOK-2148] - `aws_ebs_volume` attach action saves nil `volume_id` in node
+- [COOK-2148] - `niche_aws_ebs_volume` attach action saves nil `volume_id` in node
 
 v0.100.4
 --------
 - Support why-run mode in LWRPs
-- [COOK-1836] - make `aws_elastic_lb` idempotent
+- [COOK-1836] - make `niche_aws_elastic_lb` idempotent
 
 v0.100.2
 --------
@@ -108,7 +108,7 @@ v0.100.0
 --------
 - [COOK-1221] - convert node attribute accessors to strings
 - [COOK-1195] - manipulate AWS resource tags (instances, volumes, snapshots
-- [COOK-627] - add aws_elb (elastic load balancer) LWRP
+- [COOK-627] - add niche_aws_elb (elastic load balancer) LWRP
 
 v0.99.1
 -------
