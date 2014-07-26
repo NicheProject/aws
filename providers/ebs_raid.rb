@@ -404,6 +404,9 @@ def create_raid_disks(mount_point, mount_point_owner, mount_point_group, mount_p
         end
 
         Chef::Log.info("Format device found: #{md_device}")
+
+        # Note this case statement is duplicated because A. it works, and B. I'm too tired to
+        # figure out how to DRY code within separate ruby_block statements.
         case filesystem
         when "ext4"
           system("mke2fs -t #{filesystem} -F #{md_device}")
