@@ -287,7 +287,18 @@ def mount_device(raid_dev, mount_point, mount_point_owner, mount_point_group, mo
       # Force rebuilding file system if needed
       existing_filesystem = `blkid #{mount_point}`.split.last
       Chef::Log.info("Existing filesystem output: #{existing_filesystem}")
-      format_device(md_device, filesystem) unless existing_filesystem && existing_filesystem.match(filesystem)
+      unless existing_filesystem && existing_filesystem.match(filesystem)
+        case filesystem
+        when "ext4"
+          system("mke2fs -t #{filesystem} -F #{md_device}")
+        when "xfs"
+          run_context.include_recipe 'xfs'
+          system("mkfs -t #{filesystem} #{md_device}")
+        else
+          #TODO fill in details on how to format other filesystems here
+          Chef::Log.info("Can't format filesystem #{filesystem}. Only ext4 or xfs currently supported.")
+        end
+      end
 
       # the mountpoint must be determined dynamically, so I can't use the chef mount
       system("mount -t #{filesystem} -o #{filesystem_options} #{md_device} #{mount_point}")
@@ -393,7 +404,16 @@ def create_raid_disks(mount_point, mount_point_owner, mount_point_group, mount_p
         end
 
         Chef::Log.info("Format device found: #{md_device}")
-        format_device(md_device, filesystem)
+        case filesystem
+        when "ext4"
+          system("mke2fs -t #{filesystem} -F #{md_device}")
+        when "xfs"
+          run_context.include_recipe 'xfs'
+          system("mkfs -t #{filesystem} #{md_device}")
+        else
+          #TODO fill in details on how to format other filesystems here
+          Chef::Log.info("Can't format filesystem #{filesystem}. Only ext4 or xfs currently supported.")
+        end
       end
     end
   else
@@ -430,18 +450,6 @@ def create_raid_disks(mount_point, mount_point_owner, mount_point_group, mount_p
 
 end
 
-def format_device(md_device, filesystem)
-  case filesystem
-  when "ext4"
-    system("mke2fs -t #{filesystem} -F #{md_device}")
-  when "xfs"
-    run_context.include_recipe 'xfs'
-    system("mkfs -t #{filesystem} #{md_device}")
-  else
-    #TODO fill in details on how to format other filesystems here
-    Chef::Log.info("Can't format filesystem #{filesystem}. Only ext4 or xfs currently supported.")
-  end
-end
 
 def aws_creds
   h = {}
